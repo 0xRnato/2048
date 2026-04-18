@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/main.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/game/board_view.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3"]
 [ext_resource type="Script" path="res://scripts/input/input_controller.gd" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/ui/combo_toast.tscn" id="5"]
+[ext_resource type="Script" path="res://scripts/input/swipe_detector.gd" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_panel.tscn" id="7"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -48,6 +50,12 @@ grow_vertical = 2
 [node name="InputController" type="Node" parent="."]
 script = ExtResource("4")
 
+[node name="SwipeDetector" type="Node" parent="."]
+script = ExtResource("6")
+
 [node name="Overlays" type="CanvasLayer" parent="."]
 
 [node name="ComboToast" parent="Overlays" instance=ExtResource("5")]
+
+[node name="SettingsPanel" parent="Overlays" instance=ExtResource("7")]
+visible = false

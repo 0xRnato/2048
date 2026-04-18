@@ -58,6 +58,12 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Settings" type="Button" parent="Top"]
+layout_mode = 2
+custom_minimum_size = Vector2(140, 120)
+text = "⚙"
+theme_override_font_sizes/font_size = 56
+
 [node name="NewGame" type="Button" parent="Top"]
 layout_mode = 2
 custom_minimum_size = Vector2(240, 120)

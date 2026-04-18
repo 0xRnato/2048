@@ -23,6 +23,13 @@ var score: int = 0
 
 var _undo_stack: Array = []
 
+const MODE_SAVE_KEYS: Dictionary = {
+	GameConstants.GameMode.CLASSIC: "classic",
+	GameConstants.GameMode.DAILY: "daily",
+	GameConstants.GameMode.SIZE_3: "size_3",
+	GameConstants.GameMode.SIZE_5: "size_5",
+}
+
 func _ready() -> void:
 	transition_to(AppState.MENU)
 
@@ -69,6 +76,8 @@ func new_game(mode: int) -> void:
 	board.new_game(GameConstants.size_for_mode(mode), _seed_for_mode(mode))
 	EventBus.score_changed.emit(score)
 	EventBus.grid_size_changed.emit(board.size)
+	EventBus.best_score_changed.emit(current_mode, _best_for_current_mode())
+	SaveManager.clear_in_progress()
 	if current_state == AppState.MENU or current_state == AppState.GAME_OVER or current_state == AppState.WON_DIALOG:
 		transition_to(AppState.PLAYING)
 
@@ -94,12 +103,17 @@ func attempt_move(dir: Vector2i) -> MoveResult:
 		EventBus.tile_merged.emit(m.new_value)
 	EventBus.move_resolved.emit(result)
 
+	# Persist in-progress game.
+	_save_in_progress()
+	_check_best_score()
+
 	# Win triggers the one-shot dialog only from PLAYING; ENDLESS re-entries don't re-fire.
 	if board.has_won() and current_state == AppState.PLAYING:
 		EventBus.game_won.emit()
 		transition_to(AppState.WON_DIALOG)
 	elif board.is_game_over():
 		EventBus.game_over_reached.emit()
+		_clear_in_progress_save()
 		transition_to(AppState.GAME_OVER)
 	return result
 
@@ -135,3 +149,42 @@ func _seed_for_mode(mode: int) -> int:
 		var d: Dictionary = Time.get_date_dict_from_system(true)
 		return int("%04d%02d%02d" % [d["year"], d["month"], d["day"]])
 	return int(Time.get_ticks_usec()) ^ hash(OS.get_unique_id())
+
+# ---------------------------------------------------------------------------
+# Persistence integration
+# ---------------------------------------------------------------------------
+
+## Attempt to restore the last in-progress game from `SaveManager`. Returns true
+## on success; false when no snapshot exists or it fails to deserialize.
+func try_resume_from_save() -> bool:
+	var data: Dictionary = SaveManager.load_in_progress()
+	if data.is_empty():
+		return false
+	current_mode = int(data.get("mode", GameConstants.GameMode.CLASSIC))
+	board = Board.new()
+	board.deserialize(data.get("board", {}))
+	score = int(data.get("score", 0))
+	_undo_stack.clear()
+	EventBus.score_changed.emit(score)
+	EventBus.grid_size_changed.emit(board.size)
+	EventBus.best_score_changed.emit(current_mode, _best_for_current_mode())
+	transition_to(AppState.PLAYING)
+	return true
+
+func _save_in_progress() -> void:
+	if board == null:
+		return
+	SaveManager.save_in_progress(current_mode, board.serialize(), score, 0)
+
+func _clear_in_progress_save() -> void:
+	SaveManager.clear_in_progress()
+
+func _best_for_current_mode() -> int:
+	return SaveManager.get_best(MODE_SAVE_KEYS.get(current_mode, "classic"))
+
+func _check_best_score() -> void:
+	var key: String = MODE_SAVE_KEYS.get(current_mode, "classic")
+	var previous_best: int = SaveManager.get_best(key)
+	if score > previous_best:
+		SaveManager.set_best(key, score)
+		EventBus.best_score_changed.emit(current_mode, score)
