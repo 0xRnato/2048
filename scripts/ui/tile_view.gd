@@ -4,24 +4,6 @@ class_name TileView extends Control
 ## (`play_slide`, `play_merge`, `play_spawn`). Animations are awaitable so
 ## `BoardView` can orchestrate them in parallel and `await` the whole move.
 
-const PALETTE_BG: Dictionary = {
-	0: Color("#2a2a33"),
-	2: Color("#3b3b47"),
-	4: Color("#454e5a"),
-	8: Color("#f2b179"),
-	16: Color("#f59563"),
-	32: Color("#f67c5f"),
-	64: Color("#f65e3b"),
-	128: Color("#edcf72"),
-	256: Color("#edcc61"),
-	512: Color("#edc850"),
-	1024: Color("#edc53f"),
-	2048: Color("#edc22e"),
-}
-const PALETTE_FG_LIGHT: Color = Color("#ffffff")
-const PALETTE_FG_DARK: Color = Color("#222222")
-const HIGH_VALUE_BG: Color = Color("#3c3a32")
-
 const SLIDE_MS: int = 120
 const MERGE_POP_MS: int = 120
 const SPAWN_MS: int = 80
@@ -34,6 +16,7 @@ var cell_pos: Vector2i = Vector2i.ZERO   ## Logical board cell this tile current
 
 func _ready() -> void:
 	pivot_offset = size * 0.5
+	EventBus.theme_changed.connect(_on_theme_changed)
 	_apply()
 
 func set_value(v: int) -> void:
@@ -44,19 +27,22 @@ func set_value(v: int) -> void:
 func get_value() -> int:
 	return _value
 
+func _on_theme_changed(_id: String) -> void:
+	_apply()
+
 func _apply() -> void:
 	pivot_offset = size * 0.5
+	var theme_res: BoardTheme = ThemeService.current_theme
 	if _value == 0:
-		_bg.color = PALETTE_BG[0]
+		var empty_col: Color = theme_res.empty_cell if theme_res != null else Color("#2a2a33")
+		_bg.color = empty_col
 		_label.text = ""
 		return
-	_bg.color = PALETTE_BG.get(_value, HIGH_VALUE_BG)
+	_bg.color = theme_res.color_for(_value) if theme_res != null else Color("#3c3a32")
 	_label.text = str(_value)
-	_label.add_theme_color_override("font_color", _text_color_for(_value))
+	var text_col: Color = theme_res.text_color_for(_value) if theme_res != null else Color.WHITE
+	_label.add_theme_color_override("font_color", text_col)
 	_label.add_theme_font_size_override("font_size", _font_size_for(_value))
-
-static func _text_color_for(v: int) -> Color:
-	return PALETTE_FG_DARK if v <= 4 else PALETTE_FG_LIGHT
 
 static func _font_size_for(v: int) -> int:
 	if v < 100:

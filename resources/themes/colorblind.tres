@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="BoardTheme" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/game/board_theme.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "colorblind"
+display_name = "Colorblind-safe"
+background = Color(0.055, 0.063, 0.102, 1)
+grid_background = Color(0.102, 0.129, 0.184, 1)
+empty_cell = Color(0.165, 0.204, 0.267, 1)
+high_value_bg = Color(0.075, 0.075, 0.118, 1)
+text_color_light = Color(1, 1, 1, 1)
+text_color_dark = Color(0.07, 0.07, 0.07, 1)
+tile_palette = {
+2: Color(0.267, 0.361, 0.51, 1),
+4: Color(0.345, 0.482, 0.651, 1),
+8: Color(0.427, 0.6, 0.796, 1),
+16: Color(0.537, 0.741, 0.906, 1),
+32: Color(0.639, 0.843, 0.98, 1),
+64: Color(0.984, 0.84, 0.314, 1),
+128: Color(0.992, 0.745, 0.2, 1),
+256: Color(0.996, 0.635, 0.098, 1),
+512: Color(0.984, 0.498, 0.051, 1),
+1024: Color(0.953, 0.361, 0.031, 1),
+2048: Color(0.878, 0.255, 0.012, 1)
+}

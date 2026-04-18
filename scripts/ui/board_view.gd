@@ -9,8 +9,6 @@ class_name BoardView extends Control
 signal animation_finished
 
 const TILE_SCENE: PackedScene = preload("res://scenes/game/tile_view.tscn")
-const BG_COLOR: Color = Color("#1c1c22")
-const EMPTY_CELL_COLOR: Color = Color("#2a2a33")
 const GRID_PADDING: int = 20
 const TILE_GAP: int = 14
 
@@ -24,7 +22,11 @@ var _origin: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	EventBus.move_resolved.connect(_on_move_resolved)
 	EventBus.grid_size_changed.connect(_on_grid_size_changed)
+	EventBus.theme_changed.connect(_on_theme_changed)
 	resized.connect(_reflow)
+
+func _on_theme_changed(_id: String) -> void:
+	queue_redraw()
 
 func rebuild(size: int) -> void:
 	_grid_size = size
@@ -86,14 +88,17 @@ func _cell_to_pixel(cell: Vector2i) -> Vector2:
 	)
 
 func _draw() -> void:
+	var theme_res: BoardTheme = ThemeService.current_theme
+	var bg: Color = theme_res.grid_background if theme_res != null else Color("#1c1c22")
+	var empty_col: Color = theme_res.empty_cell if theme_res != null else Color("#2a2a33")
 	var rect: Rect2 = Rect2(Vector2.ZERO, size)
-	draw_rect(rect, BG_COLOR)
+	draw_rect(rect, bg)
 	if _grid_size <= 0:
 		return
 	for r in _grid_size:
 		for c in _grid_size:
 			var p: Vector2 = _cell_to_pixel(Vector2i(c, r))
-			draw_rect(Rect2(p, Vector2(_tile_size, _tile_size)), EMPTY_CELL_COLOR)
+			draw_rect(Rect2(p, Vector2(_tile_size, _tile_size)), empty_col)
 
 # ---------------------------------------------------------------------------
 # Animation orchestration
