@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    if: false   # enabled in M9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract release notes from CHANGELOG
+        id: notes
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+          awk -v ver="[$VERSION]" '
+            $0 ~ "^## " ver { flag=1; next }
+            flag && /^## / { exit }
+            flag { print }
+          ' CHANGELOG.md > release_notes.md
+
+      - name: Download web artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: artifacts/web
+        continue-on-error: true
+
+      - name: Download android artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: android-build
+          path: artifacts/android
+        continue-on-error: true
+
+      - name: Zip web build
+        run: |
+          if [ -d artifacts/web ]; then
+            cd artifacts/web && zip -r ../web.zip . && cd -
+          fi
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file release_notes.md \
+            artifacts/web.zip artifacts/android/*.apk artifacts/android/*.aab 2>/dev/null || \
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --notes-file release_notes.md
