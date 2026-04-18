@@ -115,10 +115,9 @@ func _on_move_resolved(result: MoveResult) -> void:
 	_animate(result)
 
 func _animate(result: MoveResult) -> void:
-	var next_map: Dictionary = {}   # final cell → TileView (after slides + merges)
+	var next_map: Dictionary = {}   # final cell → TileView after slides + merges.
 
-	# 1. Slides — tile moves, value unchanged.
-	var slide_awaits: Array = []
+	# 1. Slides — tile moves, value unchanged. Fire-and-forget tween.
 	for s in result.slides:
 		var slide: MoveResult.Slide = s
 		var tile: TileView = _tiles_by_cell.get(slide.from)
@@ -126,29 +125,26 @@ func _animate(result: MoveResult) -> void:
 			continue
 		tile.cell_pos = slide.to
 		next_map[slide.to] = tile
-		slide_awaits.append(tile.play_slide(_cell_to_pixel(slide.to)))
+		tile.play_slide(_cell_to_pixel(slide.to))
 
-	# 2. Merges — two sources converge, one is freed, survivor takes new value.
-	var merge_awaits: Array = []
-	var survivors: Array = []   # {tile: TileView, new_value: int}
+	# 2. Merges — both source tiles tween to target cell; one is freed, survivor
+	# takes the doubled value after the slide phase completes.
+	var survivors: Array = []
 	for m in result.merges:
 		var merge: MoveResult.Merge = m
 		var tile_a: TileView = _tiles_by_cell.get(merge.from_a)
 		var tile_b: TileView = _tiles_by_cell.get(merge.from_b)
 		if tile_a != null:
-			merge_awaits.append(tile_a.play_slide(_cell_to_pixel(merge.to)))
+			tile_a.play_slide(_cell_to_pixel(merge.to))
 		if tile_b != null:
-			merge_awaits.append(tile_b.play_slide(_cell_to_pixel(merge.to)))
+			tile_b.play_slide(_cell_to_pixel(merge.to))
 		survivors.append({"tile_a": tile_a, "tile_b": tile_b, "to": merge.to, "value": merge.new_value})
 
-	# Await all slide + merge tweens to finish.
-	for a in slide_awaits:
-		await a
-	for a in merge_awaits:
-		await a
+	# Wait for the slide phase to finish (all slides share SLIDE_MS duration).
+	if not result.slides.is_empty() or not result.merges.is_empty():
+		await get_tree().create_timer(TileView.SLIDE_MS / 1000.0).timeout
 
-	# Resolve merges: keep one tile, free the other, set new value, play merge pop.
-	var pop_awaits: Array = []
+	# Resolve merges: free one source, set new value on survivor, play merge pop.
 	for entry in survivors:
 		var tile_a: TileView = entry["tile_a"]
 		var tile_b: TileView = entry["tile_b"]
@@ -160,12 +156,12 @@ func _animate(result: MoveResult) -> void:
 			tile_a.cell_pos = to
 			tile_a.set_value(value)
 			next_map[to] = tile_a
-			pop_awaits.append(tile_a.play_merge())
+			tile_a.play_merge()
 		elif is_instance_valid(tile_b):
 			tile_b.cell_pos = to
 			tile_b.set_value(value)
 			next_map[to] = tile_b
-			pop_awaits.append(tile_b.play_merge())
+			tile_b.play_merge()
 
 	# Tiles that did not slide or merge stay where they are.
 	for cell in _tiles_by_cell.keys():
@@ -177,14 +173,16 @@ func _animate(result: MoveResult) -> void:
 
 	_tiles_by_cell = next_map
 
-	for a in pop_awaits:
-		await a
+	# Wait for the merge pop to play out.
+	if not result.merges.is_empty():
+		await get_tree().create_timer(TileView.MERGE_POP_MS / 1000.0).timeout
 
 	# 3. Spawn — new tile appears.
 	if result.spawned != null:
 		var sp: MoveResult.Spawn = result.spawned
 		var new_tile: TileView = _make_tile(sp.at, sp.value)
-		await new_tile.play_spawn()
+		new_tile.play_spawn()
+		await get_tree().create_timer(TileView.SPAWN_MS / 1000.0).timeout
 
 	animating = false
 	animation_finished.emit()

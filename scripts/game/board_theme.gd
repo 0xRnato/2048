@@ -17,6 +17,9 @@ class_name BoardTheme extends Resource
 func color_for(value: int) -> Color:
 	if value == 0:
 		return empty_cell
+	var key: String = str(value)
+	if tile_palette.has(key):
+		return tile_palette[key]
 	if tile_palette.has(value):
 		return tile_palette[value]
 	return high_value_bg
