@@ -3,7 +3,7 @@ extends Node
 ## Versioned, crash-safe save file at `user://save.cfg`. Atomic writes via
 ## `save.cfg.tmp` + `rename`. Exposes typed getters/setters for every known key
 ## in the schema defined in `DESIGN.md` (`prefs/*`, `best/*`, `stats/*`,
-## `achievements/<id>`, `daily/<YYYYMMDD>`, `in_progress/*`).
+## `achievements/<id>`, `in_progress/*`).
 ##
 ## Migration: `meta/version` is bumped on schema changes; `_migrate(from, to)` runs
 ## before reads so older save files are silently upgraded.
@@ -99,13 +99,6 @@ func unlock_achievement(id: String) -> bool:
 	_cfg.set_value("achievements", id, Time.get_unix_time_from_system())
 	flush()
 	return true
-
-func get_daily(yyyymmdd: String, field: String, default: Variant = 0) -> Variant:
-	return _cfg.get_value("daily", "%s_%s" % [yyyymmdd, field], default)
-
-func set_daily(yyyymmdd: String, field: String, value: Variant) -> void:
-	_cfg.set_value("daily", "%s_%s" % [yyyymmdd, field], value)
-	flush()
 
 # --- In-progress game ---
 

@@ -20,7 +20,6 @@ const CATALOG: Array = [
 	{"id": "win_5x5", "title_key": "ACH_WIN_5X5", "desc_key": ""},
 	{"id": "speedrun_10min", "title_key": "ACH_SPEEDRUN_10MIN", "desc_key": "ACH_SPEEDRUN_10MIN_DESC"},
 	{"id": "undo_master", "title_key": "ACH_UNDO_MASTER", "desc_key": "ACH_UNDO_MASTER_DESC"},
-	{"id": "daily_streak_7", "title_key": "ACH_DAILY_STREAK_7", "desc_key": "ACH_DAILY_STREAK_7_DESC"},
 	{"id": "theme_explorer", "title_key": "ACH_THEME_EXPLORER", "desc_key": "ACH_THEME_EXPLORER_DESC"},
 	{"id": "polyglot", "title_key": "ACH_POLYGLOT", "desc_key": "ACH_POLYGLOT_DESC"},
 ]

@@ -4,7 +4,6 @@ HUD_BEST,BEST,RECORDE
 HUD_NEW_GAME,NEW GAME,NOVO JOGO
 HUD_UNDO,UNDO,DESFAZER
 MODE_CLASSIC,Classic 4×4,Clássico 4×4
-MODE_DAILY,Daily Challenge,Desafio Diário
 MODE_SIZE_3,Mini 3×3,Mini 3×3
 MODE_SIZE_5,Big 5×5,Grande 5×5
 MENU_PLAY,Play,Jogar
@@ -60,8 +59,6 @@ ACH_SPEEDRUN_10MIN,Speed demon,Velocista
 ACH_SPEEDRUN_10MIN_DESC,Win Classic in under 10 minutes,Vença o Clássico em menos de 10 minutos
 ACH_UNDO_MASTER,Undo master,Mestre do desfazer
 ACH_UNDO_MASTER_DESC,Use undo 100 times,Use desfazer 100 vezes
-ACH_DAILY_STREAK_7,Daily regular,Jogador diário
-ACH_DAILY_STREAK_7_DESC,Play the daily challenge 7 days in a row,Jogue o desafio diário por 7 dias seguidos
 ACH_THEME_EXPLORER,Theme explorer,Explorador de temas
 ACH_THEME_EXPLORER_DESC,Try all 3 themes,Experimente os 3 temas
 ACH_POLYGLOT,Polyglot,Poliglota

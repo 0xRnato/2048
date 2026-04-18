@@ -60,7 +60,6 @@ rendered "×N COMBO" toast appears only when the factor is > 1.0.
 | Mode | Size | Seed | Best-score slot | Notes |
 |---|---|---|---|---|
 | Classic | 4×4 | `OS.get_unique_id() XOR Time.get_ticks_usec()` | `best/classic` | Default. |
-| Daily | 4×4 | `int(yyyymmdd)` in UTC | `best/daily_YYYYMMDD` | One scored attempt per day; replays playable but unscored. |
 | 3×3 | 3×3 | classic-style | `best/size_3` | Faster games, smaller board. |
 | 5×5 | 5×5 | classic-style | `best/size_5` | Longer games, more combos. |
 
@@ -170,13 +169,9 @@ classic = 0
 size_3 = 0
 size_5 = 0
 
-[daily]
-YYYYMMDD_score = 0
-YYYYMMDD_attempts = 0
-
 [prefs]
 theme = "dark"              # dark | light | colorblind
-mode = "classic"            # classic | daily | size_3 | size_5
+mode = "classic"            # classic | size_3 | size_5
 lang = "en"                 # en | pt_BR
 sound_volume = 0.8
 music_volume = 0.6

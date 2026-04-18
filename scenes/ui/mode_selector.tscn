@@ -60,12 +60,6 @@ custom_minimum_size = Vector2(0, 120)
 text = "MODE_CLASSIC"
 theme_override_font_sizes/font_size = 48
 
-[node name="Daily" type="Button" parent="Frame/List"]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 120)
-text = "MODE_DAILY"
-theme_override_font_sizes/font_size = 48
-
 [node name="Size3" type="Button" parent="Frame/List"]
 layout_mode = 2
 custom_minimum_size = Vector2(0, 120)

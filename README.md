@@ -4,10 +4,10 @@
 
 **A modern take on the sliding-tile puzzle — in Godot 4, targeting web and Android.**
 
-Classic 4×4 rules plus 3×3 / 5×5 variants, daily challenges seeded by date, combo-multiplier
-scoring, undo, forest-green / light / colorblind-safe themes, lifetime stats, local
-achievements, and a rewarded-ad "revive" on Android. Single codebase, two targets, zero
-running cost.
+Classic 4×4 rules plus 3×3 / 5×5 variants, combo-multiplier scoring, undo,
+forest-green / light / colorblind-safe themes, lifetime stats, local achievements,
+and a rewarded-ad "revive" on Android. Single codebase, two targets, zero running
+cost.
 
 [![Godot](https://img.shields.io/badge/Godot-4.6-478CBF?logo=godotengine&logoColor=white)](https://godotengine.org/)
 [![GDScript](https://img.shields.io/badge/GDScript-strict-478CBF)](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/)
@@ -36,8 +36,7 @@ This project takes that full chassis seriously:
 - **Enum-based FSM** — `BOOT → MENU → PLAYING → WON_DIALOG → ENDLESS → GAME_OVER → PAUSED`,
   transitions gated through a single call, emitting a signal for the UI to react to.
 - **Combo multiplier** — one move producing two merges scores ×1.25, three ×1.5, four ×2.0.
-- **Daily challenge** — every player on the same UTC day plays the same seeded board.
-- **Local achievements + stats** — 15-entry catalog, lifetime aggregates, toast notifications.
+- **Local achievements + stats** — 14-entry catalog, lifetime aggregates, toast notifications.
 - **Rewarded-ad revive** — on Android only, one-per-game, undoes the last three moves.
   Learning-grade AdMob integration in test mode; web build stays ad-free.
 - **Zero-cost hosting** — GitHub Pages for web, GitHub Releases for Android artifacts.
@@ -53,7 +52,6 @@ This project takes that full chassis seriously:
 **Gameplay**
 - Classic 4×4 with win at 2048 and optional endless continue
 - 3×3 and 5×5 variants with separate best-score slots
-- Daily challenge mode — seed derived from the current UTC date
 - Combo multiplier (×1.0 / ×1.25 / ×1.5 / ×2.0 for 1 / 2 / 3 / 4+ simultaneous merges)
 - Undo up to the last 16 moves
 - Keyboard (arrows, WASD) + touch (swipe) input

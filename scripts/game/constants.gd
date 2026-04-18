@@ -7,7 +7,6 @@ class_name GameConstants extends Object
 
 enum GameMode {
 	CLASSIC,
-	DAILY,
 	SIZE_3,
 	SIZE_5,
 }
