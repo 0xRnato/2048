@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1"]
+
+[node name="Hud" type="Control"]
+custom_minimum_size = Vector2(1080, 220)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 220.0
+grow_horizontal = 2
+script = ExtResource("1")
+
+[node name="Top" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 30.0
+offset_right = -40.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Score" type="VBoxContainer" parent="Top"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Top/Score"]
+layout_mode = 2
+text = "SCORE"
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(0.7, 0.7, 0.75, 1)
+
+[node name="Value" type="Label" parent="Top/Score"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 72
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Best" type="VBoxContainer" parent="Top"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Top/Best"]
+layout_mode = 2
+text = "BEST"
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(0.7, 0.7, 0.75, 1)
+
+[node name="Value" type="Label" parent="Top/Best"]
+layout_mode = 2
+text = "0"
+theme_override_font_sizes/font_size = 72
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Spacer" type="Control" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NewGame" type="Button" parent="Top"]
+layout_mode = 2
+custom_minimum_size = Vector2(240, 120)
+text = "NEW GAME"
+theme_override_font_sizes/font_size = 42
