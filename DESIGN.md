@@ -133,12 +133,12 @@ Placeholders; refined during M3 against the real web build.
 
 ## Palettes
 
-### Dark
-Background `#111114`, grid background `#1c1c22`, empty cell `#2a2a33`.
-Tile values (bg / fg):
-`2`: `#3b3b47 / #eeeeee` · `4`: `#454e5a / #eeeeee` · `8`: `#f2b179 / #222` · `16`: `#f59563 / #fff` ·
-`32`: `#f67c5f / #fff` · `64`: `#f65e3b / #fff` · `128`: `#edcf72 / #fff` · `256`: `#edcc61 / #fff` ·
-`512`: `#edc850 / #fff` · `1024`: `#edc53f / #fff` · `2048`: `#edc22e / #fff` · `>=4096`: `#3c3a32 / #fff`.
+### Forest (default)
+Monochrome green, brightness-stepped per tile value. Background `#0a1810`, grid background
+`#122c1c`, empty cell `#1a3f29`. Tile progression runs from muted dark sage up to near-white
+lime at 2048, so readability is carried by luminance more than hue — the game has a single
+visual identity. Light text on tiles 2–64, dark text on 128+. Values > 2048 fall back to
+the lightest tile fill.
 
 ### Light
 Mirror of the classic Gabriele Cirulli palette — `#faf8ef` background, grid `#bbada0`, tiles

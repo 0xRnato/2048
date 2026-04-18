@@ -49,7 +49,7 @@ msgid "SETTINGS_THEME"
 msgstr "Tema"
 
 msgid "SETTINGS_THEME_DARK"
-msgstr "Escuro"
+msgstr "Floresta"
 
 msgid "SETTINGS_THEME_LIGHT"
 msgstr "Claro"

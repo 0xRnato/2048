@@ -29,7 +29,7 @@ func _make_row(entry: Dictionary) -> HBoxContainer:
 	status.text = "✓" if unlocked else "✕"
 	status.add_theme_font_size_override("font_size", 48)
 	status.add_theme_color_override("font_color",
-		Color("#f0b429") if unlocked else Color("#5a5a68"))
+		Color("#86e29b") if unlocked else Color("#3a4a40"))
 	status.custom_minimum_size = Vector2(60, 0)
 	row.add_child(status)
 

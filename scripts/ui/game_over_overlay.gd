@@ -45,7 +45,7 @@ func _populate_achievements() -> void:
 		var label: Label = Label.new()
 		label.text = "✓ " + tr(entry.get("title_key", id))
 		label.add_theme_font_size_override("font_size", 32)
-		label.add_theme_color_override("font_color", Color(0.93, 0.76, 0.18, 1))
+		label.add_theme_color_override("font_color", Color(0.525, 0.886, 0.604, 1))
 		_ach_list.add_child(label)
 
 func _lookup(id: String) -> Dictionary:

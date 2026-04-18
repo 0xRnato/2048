@@ -5,8 +5,9 @@
 **A modern take on the sliding-tile puzzle — in Godot 4, targeting web and Android.**
 
 Classic 4×4 rules plus 3×3 / 5×5 variants, daily challenges seeded by date, combo-multiplier
-scoring, undo, dark / light / colorblind-safe themes, lifetime stats, local achievements,
-and a rewarded-ad "revive" on Android. Single codebase, two targets, zero running cost.
+scoring, undo, forest-green / light / colorblind-safe themes, lifetime stats, local
+achievements, and a rewarded-ad "revive" on Android. Single codebase, two targets, zero
+running cost.
 
 [![Godot](https://img.shields.io/badge/Godot-4.6-478CBF?logo=godotengine&logoColor=white)](https://godotengine.org/)
 [![GDScript](https://img.shields.io/badge/GDScript-strict-478CBF)](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/)
@@ -71,7 +72,7 @@ This project takes that full chassis seriously:
 - Settings panel: theme, mode, volumes, haptics, language, replay tutorial, reset save
 
 **Accessibility**
-- Dark, light, and Deuteranopia-safe colorblind palettes (WCAG AA text contrast)
+- Forest (monochrome green default), light, and Deuteranopia-safe colorblind palettes (WCAG AA text contrast)
 - Full keyboard navigation with visible focus ring
 - First-run tutorial, re-triggerable from settings
 
