@@ -71,6 +71,7 @@ func _on_language_selected(idx: int) -> void:
 	var key: String = str(_language_options.get_item_metadata(idx))
 	SaveManager.set_pref("lang", key)
 	Locale.set_locale(key)
+	AchievementsManager.on_language_changed(key)
 
 func _on_sound_changed(v: float) -> void:
 	SaveManager.set_pref("sound_volume", v)

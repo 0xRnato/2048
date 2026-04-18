@@ -12,6 +12,9 @@ class_name BoardTheme extends Resource
 @export var high_value_bg: Color = Color("#3c3a32")
 @export var text_color_light: Color = Color("#ffffff")
 @export var text_color_dark: Color = Color("#222222")
+## HUD / menu text colors (decoupled from tile-text so themes can tune them independently).
+@export var ui_text_primary: Color = Color("#ffffff")
+@export var ui_text_secondary: Color = Color("#b0b0b8")
 @export var tile_palette: Dictionary = {}   ## int (tile value) → Color
 
 func color_for(value: int) -> Color:

@@ -12,6 +12,8 @@ empty_cell = Color(0.102, 0.247, 0.16, 1)
 high_value_bg = Color(0.91, 1.0, 0.92, 1)
 text_color_light = Color(0.91, 0.96, 0.92, 1)
 text_color_dark = Color(0.039, 0.094, 0.063, 1)
+ui_text_primary = Color(0.91, 0.96, 0.92, 1)
+ui_text_secondary = Color(0.545, 0.725, 0.6, 1)
 tile_palette = {
 2: Color(0.102, 0.239, 0.165, 1),
 4: Color(0.145, 0.322, 0.212, 1),

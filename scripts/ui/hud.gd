@@ -9,7 +9,9 @@ signal stats_requested
 signal achievements_requested
 signal settings_requested
 
+@onready var _score_title: Label = $Container/Top/Score/Title
 @onready var _score_label: Label = $Container/Top/Score/Value
+@onready var _best_title: Label = $Container/Top/Best/Title
 @onready var _best_label: Label = $Container/Top/Best/Value
 @onready var _new_game_btn: Button = $Container/Top/NewGame
 @onready var _undo_btn: Button = $Container/Top/Undo
@@ -21,12 +23,26 @@ signal settings_requested
 func _ready() -> void:
 	EventBus.score_changed.connect(_on_score_changed)
 	EventBus.best_score_changed.connect(_on_best_score_changed)
+	EventBus.theme_changed.connect(_on_theme_changed)
 	_new_game_btn.pressed.connect(_on_new_game_pressed)
 	_undo_btn.pressed.connect(_on_undo_pressed)
 	_mode_btn.pressed.connect(func() -> void: mode_requested.emit())
 	_stats_btn.pressed.connect(func() -> void: stats_requested.emit())
 	_achievements_btn.pressed.connect(func() -> void: achievements_requested.emit())
 	_settings_btn.pressed.connect(func() -> void: settings_requested.emit())
+	_apply_theme()
+
+func _on_theme_changed(_id: String) -> void:
+	_apply_theme()
+
+func _apply_theme() -> void:
+	var theme_res: BoardTheme = ThemeService.current_theme
+	if theme_res == null:
+		return
+	_score_title.add_theme_color_override("font_color", theme_res.ui_text_secondary)
+	_best_title.add_theme_color_override("font_color", theme_res.ui_text_secondary)
+	_score_label.add_theme_color_override("font_color", theme_res.ui_text_primary)
+	_best_label.add_theme_color_override("font_color", theme_res.ui_text_primary)
 
 func _on_score_changed(new_score: int) -> void:
 	_score_label.text = str(new_score)
