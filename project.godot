@@ -77,7 +77,6 @@ pause={
 [internationalization]
 
 locale/translations=PackedStringArray("res://translations/en.po", "res://translations/pt_BR.po")
-locale/fallback="en"
 
 [rendering]
 
