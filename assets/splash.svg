@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- deep forest bg (matches default theme) -->
+  <rect width="512" height="512" fill="#0a1f14"/>
+  <!-- inner play area, centered -->
+  <rect x="64" y="64" width="384" height="384" rx="32" ry="32" fill="#12301f"/>
+  <!-- ascending tiles: 2 → 4 → 8 → 2048, growing + brightening -->
+  <rect x="96" y="336" width="80" height="80" rx="14" ry="14" fill="#2a6a44"/>
+  <rect x="192" y="240" width="96" height="96" rx="16" ry="16" fill="#3fa163"/>
+  <rect x="288" y="144" width="112" height="112" rx="20" ry="20" fill="#5fd487"/>
+  <rect x="320" y="64" width="136" height="88" rx="20" ry="20" fill="#b8ffc4"/>
+</svg>
