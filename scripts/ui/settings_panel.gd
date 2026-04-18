@@ -15,9 +15,15 @@ class_name SettingsPanel extends Control
 func _ready() -> void:
 	_populate_themes()
 	_populate_languages()
+	_resize_dropdowns()
 	_load_current()
 	_wire()
 	visible = false
+
+func _resize_dropdowns() -> void:
+	# OptionButton's popup menu has its own theme — needs a separate font size override.
+	_theme_options.get_popup().add_theme_font_size_override("font_size", 36)
+	_language_options.get_popup().add_theme_font_size_override("font_size", 36)
 
 func _populate_themes() -> void:
 	_theme_options.clear()
