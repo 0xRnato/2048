@@ -21,7 +21,6 @@ jobs:
   export:
     name: Export HTML5
     runs-on: ubuntu-latest
-    if: false   # enabled in M6
     steps:
       - uses: actions/checkout@v4
 
@@ -58,7 +57,6 @@ jobs:
     name: Deploy to GitHub Pages
     needs: export
     runs-on: ubuntu-latest
-    if: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

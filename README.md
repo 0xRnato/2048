@@ -9,13 +9,14 @@ forest-green / light / colorblind-safe themes, lifetime stats, local achievement
 and a rewarded-ad "revive" on Android. Single codebase, two targets, zero running
 cost.
 
+[![Play online](https://img.shields.io/badge/play-online-brightgreen?logo=github)](https://0xrnato.github.io/2048/)
 [![Godot](https://img.shields.io/badge/Godot-4.6-478CBF?logo=godotengine&logoColor=white)](https://godotengine.org/)
 [![GDScript](https://img.shields.io/badge/GDScript-strict-478CBF)](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![CI](https://github.com/0xRnato/2048/actions/workflows/ci.yml/badge.svg)](https://github.com/0xRnato/2048/actions/workflows/ci.yml)
 [![Web build](https://github.com/0xRnato/2048/actions/workflows/export-web.yml/badge.svg)](https://github.com/0xRnato/2048/actions/workflows/export-web.yml)
 
-[Architecture](#architecture) · [Quickstart](#quickstart) · [Stack](#stack) · [Features](#features) · [Contributing](#contributing)
+[**▶ Play now**](https://0xrnato.github.io/2048/) · [Architecture](#architecture) · [Quickstart](#quickstart) · [Stack](#stack) · [Features](#features) · [Contributing](#contributing)
 
 </div>
 
@@ -43,7 +44,8 @@ This project takes that full chassis seriously:
 
 ## Demo
 
-**Web:** *coming in M6* — https://0xrnato.github.io/2048/
+**Web (live):** <https://0xrnato.github.io/2048/> — auto-deployed on every push to `main`
+via GitHub Actions. Works on Chrome, Firefox, Safari (desktop + mobile).
 
 **Android:** *coming in M7* — APK + AAB attached to each GitHub release.
 
