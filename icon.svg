@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
-  <rect width="128" height="128" rx="16" ry="16" fill="#edc22e"/>
-  <text x="64" y="78" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="#776e65">2048</text>
+  <!-- board frame -->
+  <rect width="128" height="128" rx="18" ry="18" fill="#776e65"/>
+  <!-- inner padding -->
+  <rect x="12" y="12" width="104" height="104" rx="10" ry="10" fill="#bbada0"/>
+  <!-- 2x2 grid of escalating tiles: 2, 8, 128, 2048 -->
+  <rect x="20" y="20" width="42" height="42" rx="6" ry="6" fill="#eee4da"/>
+  <rect x="66" y="20" width="42" height="42" rx="6" ry="6" fill="#f2b179"/>
+  <rect x="20" y="66" width="42" height="42" rx="6" ry="6" fill="#edcf72"/>
+  <rect x="66" y="66" width="42" height="42" rx="6" ry="6" fill="#edc22e"/>
 </svg>
