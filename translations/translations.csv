@@ -1,0 +1,69 @@
+keys,en,pt_BR
+HUD_SCORE,SCORE,PONTOS
+HUD_BEST,BEST,RECORDE
+HUD_NEW_GAME,NEW GAME,NOVO JOGO
+HUD_UNDO,UNDO,DESFAZER
+MODE_CLASSIC,Classic 4×4,Clássico 4×4
+MODE_DAILY,Daily Challenge,Desafio Diário
+MODE_SIZE_3,Mini 3×3,Mini 3×3
+MODE_SIZE_5,Big 5×5,Grande 5×5
+MENU_PLAY,Play,Jogar
+MENU_MODE,Mode,Modo
+MENU_SETTINGS,Settings,Configurações
+MENU_STATS,Stats,Estatísticas
+MENU_ACHIEVEMENTS,Achievements,Conquistas
+SETTINGS_TITLE,Settings,Configurações
+SETTINGS_THEME,Theme,Tema
+SETTINGS_THEME_DARK,Dark,Escuro
+SETTINGS_THEME_LIGHT,Light,Claro
+SETTINGS_THEME_COLORBLIND,Colorblind-safe,Para daltônicos
+SETTINGS_SOUND_VOLUME,Sound volume,Volume de efeitos
+SETTINGS_MUSIC_VOLUME,Music volume,Volume de música
+SETTINGS_HAPTICS,Haptic feedback,Vibração
+SETTINGS_LANGUAGE,Language,Idioma
+SETTINGS_LANGUAGE_EN,English,Inglês
+SETTINGS_LANGUAGE_PT_BR,Portuguese (Brazil),Português (Brasil)
+SETTINGS_REPLAY_TUTORIAL,Replay tutorial,Ver tutorial novamente
+SETTINGS_RESET_SAVE,Reset save data,Apagar dados salvos
+SETTINGS_CLOSE,Close,Fechar
+WON_TITLE,You reached 2048!,Você chegou em 2048!
+WON_KEEP_PLAYING,Keep playing,Continuar jogando
+WON_NEW_GAME,New game,Novo jogo
+GAME_OVER_TITLE,Game over,Fim de jogo
+GAME_OVER_SCORE,Score %d,Pontos %d
+GAME_OVER_BEST,Best %d,Recorde %d
+GAME_OVER_RETRY,Try again,Tentar novamente
+GAME_OVER_MENU,Main menu,Menu principal
+GAME_OVER_REVIVE,Watch ad to revive,Assistir anúncio para reviver
+COMBO_LABEL,×%d COMBO,×%d COMBO
+STATS_TITLE,Stats,Estatísticas
+STATS_GAMES,Games played,Jogos
+STATS_MERGES,Merges,Fusões
+STATS_HIGHEST,Highest tile,Maior peça
+STATS_2048_WINS,2048 wins,Vitórias 2048
+STATS_PLAY_TIME,Play time,Tempo jogado
+STATS_BEST_TIME,Best time to 2048,Melhor tempo p/ 2048
+ACH_TITLE,Achievements,Conquistas
+ACH_FIRST_MERGE,First merge,Primeira fusão
+ACH_FIRST_MERGE_DESC,Merge two tiles for the first time,Junte duas peças pela primeira vez
+ACH_REACH_256,Reach 256,Chegar em 256
+ACH_REACH_512,Reach 512,Chegar em 512
+ACH_REACH_1024,Reach 1024,Chegar em 1024
+ACH_REACH_2048,Reach 2048,Chegar em 2048
+ACH_REACH_4096,Reach 4096,Chegar em 4096
+ACH_REACH_8192,Reach 8192,Chegar em 8192
+ACH_COMBO_4,4-way combo,Combo de 4
+ACH_COMBO_4_DESC,Produce four merges in a single move,Faça quatro fusões em um movimento
+ACH_WIN_3X3,Win 3×3,Vencer 3×3
+ACH_WIN_5X5,Win 5×5,Vencer 5×5
+ACH_SPEEDRUN_10MIN,Speed demon,Velocista
+ACH_SPEEDRUN_10MIN_DESC,Win Classic in under 10 minutes,Vença o Clássico em menos de 10 minutos
+ACH_UNDO_MASTER,Undo master,Mestre do desfazer
+ACH_UNDO_MASTER_DESC,Use undo 100 times,Use desfazer 100 vezes
+ACH_DAILY_STREAK_7,Daily regular,Jogador diário
+ACH_DAILY_STREAK_7_DESC,Play the daily challenge 7 days in a row,Jogue o desafio diário por 7 dias seguidos
+ACH_THEME_EXPLORER,Theme explorer,Explorador de temas
+ACH_THEME_EXPLORER_DESC,Try all 3 themes,Experimente os 3 temas
+ACH_POLYGLOT,Polyglot,Poliglota
+ACH_POLYGLOT_DESC,Toggle between English and Portuguese,Alterne entre inglês e português
+TOAST_ACHIEVEMENT,Achievement unlocked,Conquista desbloqueada

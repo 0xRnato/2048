@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt_BR\n"
+
+msgid "HUD_SCORE"
+msgstr "PONTOS"
+
+msgid "HUD_BEST"
+msgstr "RECORDE"
+
+msgid "HUD_NEW_GAME"
+msgstr "NOVO JOGO"
+
+msgid "HUD_UNDO"
+msgstr "DESFAZER"
+
+msgid "MODE_CLASSIC"
+msgstr "Clássico 4×4"
+
+msgid "MODE_DAILY"
+msgstr "Desafio Diário"
+
+msgid "MODE_SIZE_3"
+msgstr "Mini 3×3"
+
+msgid "MODE_SIZE_5"
+msgstr "Grande 5×5"
+
+msgid "MENU_PLAY"
+msgstr "Jogar"
+
+msgid "MENU_MODE"
+msgstr "Modo"
+
+msgid "MENU_SETTINGS"
+msgstr "Configurações"
+
+msgid "MENU_STATS"
+msgstr "Estatísticas"
+
+msgid "MENU_ACHIEVEMENTS"
+msgstr "Conquistas"
+
+msgid "SETTINGS_TITLE"
+msgstr "Configurações"
+
+msgid "SETTINGS_THEME"
+msgstr "Tema"
+
+msgid "SETTINGS_THEME_DARK"
+msgstr "Escuro"
+
+msgid "SETTINGS_THEME_LIGHT"
+msgstr "Claro"
+
+msgid "SETTINGS_THEME_COLORBLIND"
+msgstr "Para daltônicos"
+
+msgid "SETTINGS_SOUND_VOLUME"
+msgstr "Volume de efeitos"
+
+msgid "SETTINGS_MUSIC_VOLUME"
+msgstr "Volume de música"
+
+msgid "SETTINGS_HAPTICS"
+msgstr "Vibração"
+
+msgid "SETTINGS_LANGUAGE"
+msgstr "Idioma"
+
+msgid "SETTINGS_LANGUAGE_EN"
+msgstr "Inglês"
+
+msgid "SETTINGS_LANGUAGE_PT_BR"
+msgstr "Português (Brasil)"
+
+msgid "SETTINGS_REPLAY_TUTORIAL"
+msgstr "Ver tutorial novamente"
+
+msgid "SETTINGS_RESET_SAVE"
+msgstr "Apagar dados salvos"
+
+msgid "SETTINGS_CLOSE"
+msgstr "Fechar"
+
+msgid "WON_TITLE"
+msgstr "Você chegou em 2048!"
+
+msgid "WON_KEEP_PLAYING"
+msgstr "Continuar jogando"
+
+msgid "WON_NEW_GAME"
+msgstr "Novo jogo"
+
+msgid "GAME_OVER_TITLE"
+msgstr "Fim de jogo"
+
+msgid "GAME_OVER_RETRY"
+msgstr "Tentar novamente"
+
+msgid "GAME_OVER_MENU"
+msgstr "Menu principal"
+
+msgid "GAME_OVER_REVIVE"
+msgstr "Assistir anúncio para reviver"
+
+msgid "STATS_TITLE"
+msgstr "Estatísticas"
+
+msgid "STATS_GAMES"
+msgstr "Jogos"
+
+msgid "STATS_MERGES"
+msgstr "Fusões"
+
+msgid "STATS_HIGHEST"
+msgstr "Maior peça"
+
+msgid "STATS_2048_WINS"
+msgstr "Vitórias 2048"
+
+msgid "STATS_PLAY_TIME"
+msgstr "Tempo jogado"
+
+msgid "STATS_BEST_TIME"
+msgstr "Melhor tempo p/ 2048"
+
+msgid "ACH_TITLE"
+msgstr "Conquistas"
+
+msgid "TOAST_ACHIEVEMENT"
+msgstr "Conquista desbloqueada"

@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "HUD_SCORE"
+msgstr "SCORE"
+
+msgid "HUD_BEST"
+msgstr "BEST"
+
+msgid "HUD_NEW_GAME"
+msgstr "NEW GAME"
+
+msgid "HUD_UNDO"
+msgstr "UNDO"
+
+msgid "MODE_CLASSIC"
+msgstr "Classic 4×4"
+
+msgid "MODE_DAILY"
+msgstr "Daily Challenge"
+
+msgid "MODE_SIZE_3"
+msgstr "Mini 3×3"
+
+msgid "MODE_SIZE_5"
+msgstr "Big 5×5"
+
+msgid "MENU_PLAY"
+msgstr "Play"
+
+msgid "MENU_MODE"
+msgstr "Mode"
+
+msgid "MENU_SETTINGS"
+msgstr "Settings"
+
+msgid "MENU_STATS"
+msgstr "Stats"
+
+msgid "MENU_ACHIEVEMENTS"
+msgstr "Achievements"
+
+msgid "SETTINGS_TITLE"
+msgstr "Settings"
+
+msgid "SETTINGS_THEME"
+msgstr "Theme"
+
+msgid "SETTINGS_THEME_DARK"
+msgstr "Dark"
+
+msgid "SETTINGS_THEME_LIGHT"
+msgstr "Light"
+
+msgid "SETTINGS_THEME_COLORBLIND"
+msgstr "Colorblind-safe"
+
+msgid "SETTINGS_SOUND_VOLUME"
+msgstr "Sound volume"
+
+msgid "SETTINGS_MUSIC_VOLUME"
+msgstr "Music volume"
+
+msgid "SETTINGS_HAPTICS"
+msgstr "Haptic feedback"
+
+msgid "SETTINGS_LANGUAGE"
+msgstr "Language"
+
+msgid "SETTINGS_LANGUAGE_EN"
+msgstr "English"
+
+msgid "SETTINGS_LANGUAGE_PT_BR"
+msgstr "Portuguese (Brazil)"
+
+msgid "SETTINGS_REPLAY_TUTORIAL"
+msgstr "Replay tutorial"
+
+msgid "SETTINGS_RESET_SAVE"
+msgstr "Reset save data"
+
+msgid "SETTINGS_CLOSE"
+msgstr "Close"
+
+msgid "WON_TITLE"
+msgstr "You reached 2048!"
+
+msgid "WON_KEEP_PLAYING"
+msgstr "Keep playing"
+
+msgid "WON_NEW_GAME"
+msgstr "New game"
+
+msgid "GAME_OVER_TITLE"
+msgstr "Game over"
+
+msgid "GAME_OVER_RETRY"
+msgstr "Try again"
+
+msgid "GAME_OVER_MENU"
+msgstr "Main menu"
+
+msgid "GAME_OVER_REVIVE"
+msgstr "Watch ad to revive"
+
+msgid "STATS_TITLE"
+msgstr "Stats"
+
+msgid "STATS_GAMES"
+msgstr "Games played"
+
+msgid "STATS_MERGES"
+msgstr "Merges"
+
+msgid "STATS_HIGHEST"
+msgstr "Highest tile"
+
+msgid "STATS_2048_WINS"
+msgstr "2048 wins"
+
+msgid "STATS_PLAY_TIME"
+msgstr "Play time"
+
+msgid "STATS_BEST_TIME"
+msgstr "Best time to 2048"
+
+msgid "ACH_TITLE"
+msgstr "Achievements"
+
+msgid "TOAST_ACHIEVEMENT"
+msgstr "Achievement unlocked"
