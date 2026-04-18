@@ -19,6 +19,10 @@ signal game_over_reached
 signal animation_started
 signal animation_finished
 
+## Fires when the logical board has been overhauled without a normal move —
+## undo, new_game, or resume-from-save. Consumers (BoardView) rebuild to match.
+signal board_reset
+
 # --- Settings / meta ---
 signal theme_changed(theme_name: String)
 signal grid_size_changed(new_size: int)

@@ -22,8 +22,13 @@ var _origin: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	EventBus.move_resolved.connect(_on_move_resolved)
 	EventBus.grid_size_changed.connect(_on_grid_size_changed)
+	EventBus.board_reset.connect(_on_board_reset)
 	EventBus.theme_changed.connect(_on_theme_changed)
 	resized.connect(_reflow)
+
+func _on_board_reset() -> void:
+	if GameManager.board != null:
+		rebuild(GameManager.board.size)
 
 func _on_theme_changed(_id: String) -> void:
 	queue_redraw()

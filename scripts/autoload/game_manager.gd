@@ -25,7 +25,6 @@ var _undo_stack: Array = []
 
 const MODE_SAVE_KEYS: Dictionary = {
 	GameConstants.GameMode.CLASSIC: "classic",
-	GameConstants.GameMode.DAILY: "daily",
 	GameConstants.GameMode.SIZE_3: "size_3",
 	GameConstants.GameMode.SIZE_5: "size_5",
 }
@@ -125,6 +124,7 @@ func undo() -> bool:
 	board.deserialize(snap["board"])
 	score = int(snap["score"])
 	EventBus.score_changed.emit(score)
+	EventBus.board_reset.emit()
 	return true
 
 ## Continue playing past the 2048 win tile — only valid from `WON_DIALOG`.
@@ -144,10 +144,7 @@ func _push_undo_snapshot() -> void:
 	if _undo_stack.size() > GameConstants.UNDO_STACK_MAX:
 		_undo_stack.pop_front()
 
-func _seed_for_mode(mode: int) -> int:
-	if mode == GameConstants.GameMode.DAILY:
-		var d: Dictionary = Time.get_date_dict_from_system(true)
-		return int("%04d%02d%02d" % [d["year"], d["month"], d["day"]])
+func _seed_for_mode(_mode: int) -> int:
 	return int(Time.get_ticks_usec()) ^ hash(OS.get_unique_id())
 
 # ---------------------------------------------------------------------------
