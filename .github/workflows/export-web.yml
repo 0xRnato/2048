@@ -42,10 +42,13 @@ jobs:
       - name: Import project
         run: godot --headless --path . --import
 
+      - name: Verify templates installed
+        run: ls -la ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/ | head -30
+
       - name: Export Web build
         run: |
           mkdir -p build/web
-          godot --headless --path . --export-release "Web" build/web/index.html
+          godot --headless --path . --verbose --export-release "Web" build/web/index.html
           test -f build/web/index.html
 
       - name: Upload Pages artifact
