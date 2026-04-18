@@ -70,6 +70,7 @@ theme_override_font_sizes/font_size = 42
 [node name="Options" type="OptionButton" parent="Frame/Scroll/List/ThemeRow"]
 layout_mode = 2
 custom_minimum_size = Vector2(320, 80)
+theme_override_font_sizes/font_size = 36
 
 [node name="SoundRow" type="HBoxContainer" parent="Frame/Scroll/List"]
 layout_mode = 2
@@ -128,6 +129,7 @@ theme_override_font_sizes/font_size = 42
 [node name="Options" type="OptionButton" parent="Frame/Scroll/List/LanguageRow"]
 layout_mode = 2
 custom_minimum_size = Vector2(320, 80)
+theme_override_font_sizes/font_size = 36
 
 [node name="ReplayTutorial" type="Button" parent="Frame/Scroll/List"]
 layout_mode = 2
