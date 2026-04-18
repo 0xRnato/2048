@@ -7,6 +7,16 @@ class_name InputController extends Node
 
 var disabled: bool = false
 
+func _ready() -> void:
+	EventBus.animation_started.connect(_on_animation_started)
+	EventBus.animation_finished.connect(_on_animation_finished)
+
+func _on_animation_started() -> void:
+	disabled = true
+
+func _on_animation_finished() -> void:
+	disabled = false
+
 func _unhandled_input(event: InputEvent) -> void:
 	if disabled:
 		return

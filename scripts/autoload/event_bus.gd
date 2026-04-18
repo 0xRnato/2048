@@ -15,6 +15,10 @@ signal combo_scored(count: int, score: int)
 signal game_won
 signal game_over_reached
 
+# --- Animation / rendering ---
+signal animation_started
+signal animation_finished
+
 # --- Settings / meta ---
 signal theme_changed(theme_name: String)
 signal grid_size_changed(new_size: int)
