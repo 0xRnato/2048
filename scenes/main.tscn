@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/main.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/game/board_view.tscn" id="2"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/combo_toast.tscn" id="5"]
 [ext_resource type="Script" path="res://scripts/input/swipe_detector.gd" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ui/settings_panel.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/ui/stats_panel.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/ui/achievements_panel.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mode_selector.tscn" id="10"]
+[ext_resource type="PackedScene" path="res://scenes/ui/won_overlay.tscn" id="11"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_over_overlay.tscn" id="12"]
+[ext_resource type="PackedScene" path="res://scenes/ui/achievement_toast.tscn" id="13"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -29,7 +35,7 @@ color = Color(0.07, 0.07, 0.09, 1)
 [node name="Hud" parent="." instance=ExtResource("3")]
 layout_mode = 1
 anchor_right = 1.0
-offset_bottom = 220.0
+offset_bottom = 340.0
 grow_horizontal = 2
 
 [node name="BoardView" parent="." instance=ExtResource("2")]
@@ -57,5 +63,22 @@ script = ExtResource("6")
 
 [node name="ComboToast" parent="Overlays" instance=ExtResource("5")]
 
+[node name="AchievementToast" parent="Overlays" instance=ExtResource("13")]
+
 [node name="SettingsPanel" parent="Overlays" instance=ExtResource("7")]
+visible = false
+
+[node name="StatsPanel" parent="Overlays" instance=ExtResource("8")]
+visible = false
+
+[node name="AchievementsPanel" parent="Overlays" instance=ExtResource("9")]
+visible = false
+
+[node name="ModeSelector" parent="Overlays" instance=ExtResource("10")]
+visible = false
+
+[node name="WonOverlay" parent="Overlays" instance=ExtResource("11")]
+visible = false
+
+[node name="GameOverOverlay" parent="Overlays" instance=ExtResource("12")]
 visible = false

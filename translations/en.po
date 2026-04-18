@@ -96,6 +96,12 @@ msgstr "New game"
 msgid "GAME_OVER_TITLE"
 msgstr "Game over"
 
+msgid "GAME_OVER_SCORE"
+msgstr "Score %d"
+
+msgid "GAME_OVER_BEST"
+msgstr "Best %d"
+
 msgid "GAME_OVER_RETRY"
 msgstr "Try again"
 
