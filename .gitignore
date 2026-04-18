@@ -1,0 +1,40 @@
+# Godot 4+ generated
+.godot/
+.import/
+
+# Godot export outputs
+build/
+/android/
+export_presets_local.cfg
+
+# Credentials (export keystores, passwords)
+.godot/export_credentials.cfg
+*.keystore
+*.jks
+
+# Node / tooling (future)
+node_modules/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Python cache (pre-commit)
+__pycache__/
+*.pyc
+
+# Local planning / context (not pushed)
+CLAUDE.md
+PLAN.md
+TASKS.md
+.claude/
