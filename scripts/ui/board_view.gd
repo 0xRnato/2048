@@ -81,6 +81,14 @@ func _reflow() -> void:
 		t.position = _cell_to_pixel(cell)
 		t.pivot_offset = Vector2(_tile_size * 0.5, _tile_size * 0.5)
 
+## Safe accessor — returns null if the dict entry is missing or the referenced
+## tile has already been queue-freed. Avoids typed-assignment errors.
+func _safe_tile(cell: Vector2i) -> TileView:
+	var raw = _tiles_by_cell.get(cell)
+	if raw == null or not is_instance_valid(raw):
+		return null
+	return raw
+
 func _cell_to_pixel(cell: Vector2i) -> Vector2:
 	return _origin + Vector2(
 		cell.x * (_tile_size + TILE_GAP),
@@ -120,7 +128,7 @@ func _animate(result: MoveResult) -> void:
 	# 1. Slides — tile moves, value unchanged. Fire-and-forget tween.
 	for s in result.slides:
 		var slide: MoveResult.Slide = s
-		var tile: TileView = _tiles_by_cell.get(slide.from)
+		var tile: TileView = _safe_tile(slide.from)
 		if tile == null:
 			continue
 		tile.cell_pos = slide.to
@@ -132,8 +140,8 @@ func _animate(result: MoveResult) -> void:
 	var survivors: Array = []
 	for m in result.merges:
 		var merge: MoveResult.Merge = m
-		var tile_a: TileView = _tiles_by_cell.get(merge.from_a)
-		var tile_b: TileView = _tiles_by_cell.get(merge.from_b)
+		var tile_a: TileView = _safe_tile(merge.from_a)
+		var tile_b: TileView = _safe_tile(merge.from_b)
 		if tile_a != null:
 			tile_a.play_slide(_cell_to_pixel(merge.to))
 		if tile_b != null:
@@ -145,29 +153,35 @@ func _animate(result: MoveResult) -> void:
 		await get_tree().create_timer(TileView.SLIDE_MS / 1000.0).timeout
 
 	# Resolve merges: free one source, set new value on survivor, play merge pop.
+	# Intermediate raws are untyped so invalid instances skip cleanly.
 	for entry in survivors:
-		var tile_a: TileView = entry["tile_a"]
-		var tile_b: TileView = entry["tile_b"]
+		var raw_a = entry["tile_a"]
+		var raw_b = entry["tile_b"]
 		var to: Vector2i = entry["to"]
 		var value: int = entry["value"]
-		if is_instance_valid(tile_b):
+		var tile_a: TileView = raw_a if is_instance_valid(raw_a) else null
+		var tile_b: TileView = raw_b if is_instance_valid(raw_b) else null
+		if tile_b != null:
 			tile_b.queue_free()
-		if is_instance_valid(tile_a):
+		if tile_a != null:
 			tile_a.cell_pos = to
 			tile_a.set_value(value)
 			next_map[to] = tile_a
 			tile_a.play_merge()
-		elif is_instance_valid(tile_b):
+		elif tile_b != null:
 			tile_b.cell_pos = to
 			tile_b.set_value(value)
 			next_map[to] = tile_b
 			tile_b.play_merge()
 
-	# Tiles that did not slide or merge stay where they are.
+	# Tiles that did not slide or merge stay where they are. Iterate without typing
+	# the intermediate so a queue_freed instance doesn't crash the assignment —
+	# `is_instance_valid` runs before any typed cast.
 	for cell in _tiles_by_cell.keys():
-		var t: TileView = _tiles_by_cell[cell]
-		if not is_instance_valid(t):
+		var raw = _tiles_by_cell[cell]
+		if not is_instance_valid(raw):
 			continue
+		var t: TileView = raw
 		if not next_map.has(t.cell_pos) and t.cell_pos == cell:
 			next_map[cell] = t
 
