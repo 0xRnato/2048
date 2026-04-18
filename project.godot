@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://scripts/autoload/event_bus.gd"
+AudioManager="*res://scripts/autoload/audio_manager.gd"
+Haptics="*res://scripts/autoload/haptics.gd"
 GameManager="*res://scripts/autoload/game_manager.gd"
 
 [display]
