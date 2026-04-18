@@ -18,9 +18,6 @@ msgstr "UNDO"
 msgid "MODE_CLASSIC"
 msgstr "Classic 4×4"
 
-msgid "MODE_DAILY"
-msgstr "Daily Challenge"
-
 msgid "MODE_SIZE_3"
 msgstr "Mini 3×3"
 
@@ -134,6 +131,66 @@ msgstr "Best time to 2048"
 
 msgid "ACH_TITLE"
 msgstr "Achievements"
+
+msgid "ACH_FIRST_MERGE"
+msgstr "First merge"
+
+msgid "ACH_FIRST_MERGE_DESC"
+msgstr "Merge two tiles for the first time"
+
+msgid "ACH_REACH_256"
+msgstr "Reach 256"
+
+msgid "ACH_REACH_512"
+msgstr "Reach 512"
+
+msgid "ACH_REACH_1024"
+msgstr "Reach 1024"
+
+msgid "ACH_REACH_2048"
+msgstr "Reach 2048"
+
+msgid "ACH_REACH_4096"
+msgstr "Reach 4096"
+
+msgid "ACH_REACH_8192"
+msgstr "Reach 8192"
+
+msgid "ACH_COMBO_4"
+msgstr "4-way combo"
+
+msgid "ACH_COMBO_4_DESC"
+msgstr "Produce four merges in a single move"
+
+msgid "ACH_WIN_3X3"
+msgstr "Win on 3×3"
+
+msgid "ACH_WIN_5X5"
+msgstr "Win on 5×5"
+
+msgid "ACH_SPEEDRUN_10MIN"
+msgstr "Speed demon"
+
+msgid "ACH_SPEEDRUN_10MIN_DESC"
+msgstr "Win Classic in under 10 minutes"
+
+msgid "ACH_UNDO_MASTER"
+msgstr "Undo master"
+
+msgid "ACH_UNDO_MASTER_DESC"
+msgstr "Use undo 100 times cumulatively"
+
+msgid "ACH_THEME_EXPLORER"
+msgstr "Theme explorer"
+
+msgid "ACH_THEME_EXPLORER_DESC"
+msgstr "Try all 3 themes"
+
+msgid "ACH_POLYGLOT"
+msgstr "Polyglot"
+
+msgid "ACH_POLYGLOT_DESC"
+msgstr "Toggle the language between English and Portuguese"
 
 msgid "TOAST_ACHIEVEMENT"
 msgstr "Achievement unlocked"

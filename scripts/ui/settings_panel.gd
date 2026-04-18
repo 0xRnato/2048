@@ -65,7 +65,7 @@ func _wire() -> void:
 func _on_theme_selected(idx: int) -> void:
 	var key: String = str(_theme_options.get_item_metadata(idx))
 	SaveManager.set_pref("theme", key)
-	EventBus.theme_changed.emit(key)
+	ThemeService.apply(key)
 
 func _on_language_selected(idx: int) -> void:
 	var key: String = str(_language_options.get_item_metadata(idx))
