@@ -23,6 +23,16 @@ var score: int = 0
 
 var _undo_stack: Array = []
 
+# Revive ring buffer — distinct from undo stack. Always holds last N pre-move snapshots
+# so a rewarded-ad revive can reliably restore to a pre-gameover state even if the
+# undo stack was exhausted manually.
+var _revive_buffer: Array = []
+var _revive_used_this_game: bool = false
+
+# Interstitial frequency-cap state.
+var _game_over_count_since_interstitial: int = 0
+var _last_interstitial_ticks_ms: int = 0
+
 const MODE_SAVE_KEYS: Dictionary = {
 	GameConstants.GameMode.CLASSIC: "classic",
 	GameConstants.GameMode.SIZE_3: "size_3",
@@ -49,7 +59,14 @@ func transition_to(next: int) -> bool:
 	var previous: int = current_state
 	current_state = next
 	EventBus.state_changed.emit(previous, next)
+	_sync_banner_for_state(next)
 	return true
+
+func _sync_banner_for_state(state: int) -> void:
+	if state == AppState.PLAYING or state == AppState.ENDLESS:
+		AdService.show_banner()
+	else:
+		AdService.hide_banner()
 
 static func state_name(state: int) -> String:
 	match state:
@@ -72,6 +89,8 @@ func new_game(mode: int) -> void:
 	board = Board.new()
 	score = 0
 	_undo_stack.clear()
+	_revive_buffer.clear()
+	_revive_used_this_game = false
 	board.new_game(GameConstants.size_for_mode(mode), _seed_for_mode(mode))
 	EventBus.score_changed.emit(score)
 	EventBus.grid_size_changed.emit(board.size)
@@ -88,10 +107,12 @@ func attempt_move(dir: Vector2i) -> MoveResult:
 		return MoveResult.new()
 
 	_push_undo_snapshot()
+	_push_revive_snapshot()
 	var result: MoveResult = board.attempt_move(dir)
 	if not result.moved:
-		# Roll back the snapshot we speculatively pushed.
+		# Roll back the snapshots we speculatively pushed.
 		_undo_stack.pop_back()
+		_revive_buffer.pop_back()
 		return result
 
 	score += result.score_delta
@@ -113,6 +134,7 @@ func attempt_move(dir: Vector2i) -> MoveResult:
 	elif board.is_game_over():
 		EventBus.game_over_reached.emit()
 		_clear_in_progress_save()
+		_maybe_show_interstitial()
 		transition_to(AppState.GAME_OVER)
 	return result
 
@@ -126,6 +148,30 @@ func undo() -> bool:
 	EventBus.score_changed.emit(score)
 	EventBus.board_reset.emit()
 	return true
+
+## Restore the oldest entry in the revive buffer — effectively undoing the last
+## `revive_moves_restored` moves. Single-use per game. Transitions back to PLAYING
+## (or ENDLESS) depending on win state.
+func revive() -> bool:
+	if _revive_used_this_game:
+		return false
+	if _revive_buffer.is_empty():
+		return false
+	var snap: Dictionary = _revive_buffer[0]
+	board.deserialize(snap["board"])
+	score = int(snap["score"])
+	_revive_buffer.clear()
+	_undo_stack.clear()
+	_revive_used_this_game = true
+	EventBus.score_changed.emit(score)
+	EventBus.board_reset.emit()
+	var target_state: int = AppState.ENDLESS if board.has_won() else AppState.PLAYING
+	if current_state != target_state:
+		transition_to(target_state)
+	return true
+
+func can_revive() -> bool:
+	return not _revive_used_this_game and not _revive_buffer.is_empty()
 
 ## Continue playing past the 2048 win tile — only valid from `WON_DIALOG`.
 func keep_playing() -> bool:
@@ -143,6 +189,27 @@ func _push_undo_snapshot() -> void:
 	_undo_stack.append({"board": board.serialize(), "score": score})
 	if _undo_stack.size() > GameConstants.UNDO_STACK_MAX:
 		_undo_stack.pop_front()
+
+func _push_revive_snapshot() -> void:
+	var cap: int = AdService.config.revive_moves_restored if AdService.config != null else 3
+	_revive_buffer.append({"board": board.serialize(), "score": score})
+	if _revive_buffer.size() > cap:
+		_revive_buffer.pop_front()
+
+func _maybe_show_interstitial() -> void:
+	if AdService.config == null:
+		return
+	_game_over_count_since_interstitial += 1
+	var every_n: int = AdService.config.interstitial_every_n_game_overs
+	var min_interval_s: int = AdService.config.interstitial_min_interval_seconds
+	if _game_over_count_since_interstitial < every_n:
+		return
+	var now_ms: int = Time.get_ticks_msec()
+	if _last_interstitial_ticks_ms > 0 and now_ms - _last_interstitial_ticks_ms < min_interval_s * 1000:
+		return
+	AdService.show_interstitial()
+	_game_over_count_since_interstitial = 0
+	_last_interstitial_ticks_ms = now_ms
 
 func _seed_for_mode(_mode: int) -> int:
 	return int(Time.get_ticks_usec()) ^ hash(OS.get_unique_id())
