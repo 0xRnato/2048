@@ -7,6 +7,7 @@ class_name GameOverOverlay extends Control
 @onready var _score_label: Label = $Frame/List/Score
 @onready var _best_label: Label = $Frame/List/Best
 @onready var _ach_list: VBoxContainer = $Frame/List/Achievements
+@onready var _revive_btn: Button = $Frame/List/Revive
 @onready var _retry_btn: Button = $Frame/List/Retry
 @onready var _menu_btn: Button = $Frame/List/Menu
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 	visible = false
 	EventBus.state_changed.connect(_on_state_changed)
 	EventBus.achievement_unlocked.connect(_on_achievement_unlocked)
+	_revive_btn.pressed.connect(_on_revive)
 	_retry_btn.pressed.connect(_on_retry)
 	_menu_btn.pressed.connect(_on_menu)
 
@@ -35,6 +37,7 @@ func _show() -> void:
 	var best: int = SaveManager.get_best(GameManager.MODE_SAVE_KEYS.get(GameManager.current_mode, "classic"))
 	_best_label.text = tr("GAME_OVER_BEST") % best
 	_populate_achievements()
+	_revive_btn.visible = GameManager.can_revive()
 	visible = true
 
 func _populate_achievements() -> void:
@@ -53,6 +56,15 @@ func _lookup(id: String) -> Dictionary:
 		if entry.get("id") == id:
 			return entry
 	return {}
+
+func _on_revive() -> void:
+	_revive_btn.disabled = true
+	AdService.show_rewarded_revive(func() -> void:
+		if GameManager.revive():
+			visible = false
+		else:
+			_revive_btn.disabled = false
+	)
 
 func _on_retry() -> void:
 	GameManager.new_game(GameManager.current_mode)

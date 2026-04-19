@@ -20,6 +20,7 @@ func _ready() -> void:
 	_hud.mode_requested.connect(func() -> void: _toggle(_mode_selector))
 	EventBus.theme_changed.connect(_on_theme_changed)
 	_apply_theme()
+	AdService.request_consent()
 	if not GameManager.try_resume_from_save():
 		GameManager.new_game(GameConstants.GameMode.CLASSIC)
 	_board_view.rebuild(GameManager.board.size)
