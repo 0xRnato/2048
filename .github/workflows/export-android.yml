@@ -50,7 +50,18 @@ jobs:
           unzip -o -q ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/android_source.zip -d android/build
           ls android/build | head -10
 
-      - name: Configure Godot editor settings for Android SDK
+      - name: Generate debug keystore
+        run: |
+          set -e
+          mkdir -p ~/.android
+          keytool -genkey -v \
+            -keystore ~/.android/debug.keystore \
+            -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US"
+
+      - name: Configure Godot editor settings for Android SDK and keystore
         run: |
           mkdir -p ~/.config/godot
           cat > ~/.config/godot/editor_settings-4.tres <<EOF
@@ -59,7 +70,12 @@ jobs:
           [resource]
           export/android/android_sdk_path = "${ANDROID_HOME}"
           export/android/java_sdk_path = "${JAVA_HOME}"
+          export/android/debug_keystore = "${HOME}/.android/debug.keystore"
+          export/android/debug_keystore_user = "androiddebugkey"
+          export/android/debug_keystore_pass = "android"
           EOF
+          echo "--- editor settings ---"
+          cat ~/.config/godot/editor_settings-4.tres
 
       - name: Import project
         run: godot --headless --path . --import
