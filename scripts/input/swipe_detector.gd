@@ -27,7 +27,7 @@ func _on_animation_started() -> void:
 func _on_animation_finished() -> void:
 	disabled = false
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if disabled:
 		return
 
