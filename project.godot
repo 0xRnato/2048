@@ -28,6 +28,7 @@ Haptics="*res://scripts/autoload/haptics.gd"
 Locale="*res://scripts/autoload/locale.gd"
 StatsTracker="*res://scripts/autoload/stats_tracker.gd"
 AchievementsManager="*res://scripts/autoload/achievements_manager.gd"
+AdService="*res://scripts/autoload/ad_service.gd"
 GameManager="*res://scripts/autoload/game_manager.gd"
 
 [display]

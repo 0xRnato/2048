@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/game/game_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+admob_app_id = "ca-app-pub-3940256099942544~3347511713"
+ad_banner_id = "ca-app-pub-3940256099942544/6300978111"
+ad_interstitial_id = "ca-app-pub-3940256099942544/1033173712"
+ad_rewarded_id = "ca-app-pub-3940256099942544/5224354917"
+interstitial_every_n_game_overs = 3
+interstitial_min_interval_seconds = 60
+revive_moves_restored = 3
+revive_max_per_game = 1
