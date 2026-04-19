@@ -56,7 +56,9 @@ jobs:
           set -e
           mkdir -p android/build
           unzip -o -q ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/android_source.zip -d android/build
+          echo "${GODOT_VERSION}.stable" > android/.build_version
           ls android/build | head -10
+          cat android/.build_version
 
       - name: Generate debug keystore
         run: |
