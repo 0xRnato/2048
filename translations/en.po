@@ -194,3 +194,42 @@ msgstr "Toggle the language between English and Portuguese"
 
 msgid "TOAST_ACHIEVEMENT"
 msgstr "Achievement unlocked"
+
+msgid "TUT_STEP_1_TITLE"
+msgstr "Welcome"
+
+msgid "TUT_STEP_1_BODY"
+msgstr "Combine matching tiles to reach 2048. The game starts with two tiles on a 4×4 grid."
+
+msgid "TUT_STEP_2_TITLE"
+msgstr "Move"
+
+msgid "TUT_STEP_2_BODY"
+msgstr "Swipe in any direction — or use the arrow keys — to slide every tile the same way."
+
+msgid "TUT_STEP_3_TITLE"
+msgstr "Merge"
+
+msgid "TUT_STEP_3_BODY"
+msgstr "Two tiles with the same number merge into one with double the value: 2+2=4, 4+4=8, and so on."
+
+msgid "TUT_STEP_4_TITLE"
+msgstr "Combos"
+
+msgid "TUT_STEP_4_BODY"
+msgstr "Multiple merges in the same move earn a score bonus — ×1.25, ×1.5, up to ×2.0 for a four-way combo."
+
+msgid "TUT_STEP_5_TITLE"
+msgstr "Modes & themes"
+
+msgid "TUT_STEP_5_BODY"
+msgstr "Try 3×3 and 5×5 for shorter or longer runs. Change the theme in Settings to Light or Colorblind-safe."
+
+msgid "TUT_NEXT"
+msgstr "Next"
+
+msgid "TUT_SKIP"
+msgstr "Skip"
+
+msgid "TUT_DONE"
+msgstr "Done"

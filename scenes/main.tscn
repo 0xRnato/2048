@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/main.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/game/board_view.tscn" id="2"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/won_overlay.tscn" id="11"]
 [ext_resource type="PackedScene" path="res://scenes/ui/game_over_overlay.tscn" id="12"]
 [ext_resource type="PackedScene" path="res://scenes/ui/achievement_toast.tscn" id="13"]
+[ext_resource type="PackedScene" path="res://scenes/ui/tutorial_overlay.tscn" id="14"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -81,4 +82,7 @@ visible = false
 visible = false
 
 [node name="GameOverOverlay" parent="Overlays" instance=ExtResource("12")]
+visible = false
+
+[node name="TutorialOverlay" parent="Overlays" instance=ExtResource("14")]
 visible = false

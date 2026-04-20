@@ -12,7 +12,6 @@ jobs:
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
-    if: false   # enabled in M9
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,6 +20,7 @@ jobs:
       - name: Extract release notes from CHANGELOG
         id: notes
         run: |
+          set -e
           TAG="${GITHUB_REF_NAME}"
           VERSION="${TAG#v}"
           awk -v ver="[$VERSION]" '
@@ -28,35 +28,23 @@ jobs:
             flag && /^## / { exit }
             flag { print }
           ' CHANGELOG.md > release_notes.md
-
-      - name: Download web artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: web-build
-          path: artifacts/web
-        continue-on-error: true
-
-      - name: Download android artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: android-build
-          path: artifacts/android
-        continue-on-error: true
-
-      - name: Zip web build
-        run: |
-          if [ -d artifacts/web ]; then
-            cd artifacts/web && zip -r ../web.zip . && cd -
+          if [ ! -s release_notes.md ]; then
+            echo "No changelog entry found for ${TAG}, falling back to tag message."
+            git tag -l "$TAG" -n20 > release_notes.md
           fi
+          cat release_notes.md
 
       - name: Create release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            --title "${GITHUB_REF_NAME}" \
+          set -e
+          TAG="${GITHUB_REF_NAME}"
+          PRE_FLAG=""
+          case "$TAG" in
+            *-alpha*|*-beta*|*-rc*) PRE_FLAG="--prerelease" ;;
+          esac
+          gh release create "$TAG" \
+            --title "$TAG" \
             --notes-file release_notes.md \
-            artifacts/web.zip artifacts/android/*.apk artifacts/android/*.aab 2>/dev/null || \
-          gh release create "${GITHUB_REF_NAME}" \
-            --title "${GITHUB_REF_NAME}" \
-            --notes-file release_notes.md
+            $PRE_FLAG

@@ -3,6 +3,8 @@ class_name SettingsPanel extends Control
 ## Overlay for user-facing preferences. Values persist via `SaveManager`; audio
 ## values propagate to `AudioManager`, language to `Locale`.
 
+signal replay_tutorial_requested
+
 @onready var _theme_options: OptionButton = $Frame/Scroll/List/ThemeRow/Options
 @onready var _language_options: OptionButton = $Frame/Scroll/List/LanguageRow/Options
 @onready var _sound_slider: HSlider = $Frame/Scroll/List/SoundRow/Slider
@@ -94,6 +96,7 @@ func _on_haptics_toggled(on: bool) -> void:
 func _on_replay_tutorial_pressed() -> void:
 	SaveManager.set_pref("tutorial_seen", false)
 	visible = false
+	replay_tutorial_requested.emit()
 
 func _on_reset_save_pressed() -> void:
 	SaveManager.reset_all()
